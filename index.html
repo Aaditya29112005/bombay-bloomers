@@ -240,6 +240,9 @@ p{margin:0}
 .cat-title{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:var(--s4);color:var(--oxblood);line-height:1;margin:6px 0 4px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .cat-title em{font-family:var(--f-serif);font-style:italic;text-transform:none;font-weight:400;font-size:1.05rem;color:var(--paper-muted)}
 .cat-note{color:var(--paper-muted);font-size:.92rem;margin-bottom:10px}
+.more-btn{display:inline-flex;align-items:center;gap:8px;margin:-14px 0 38px;padding:.7em 1.2em;border-radius:999px;border:1.5px solid var(--oxblood);background:none;color:var(--oxblood);font:600 .92rem var(--f-body);cursor:pointer;transition:background .2s,color .2s}
+.more-btn:hover{background:var(--oxblood);color:var(--paper)}
+.more-btn svg{transition:transform .25s}
 .dishes{list-style:none;margin:0 0 34px;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
 .dish{padding:14px 0;border-bottom:1px dashed var(--paper-line);display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;align-items:start}
 .dish__body{display:grid;gap:4px;min-width:0}
@@ -907,17 +910,33 @@ function renderCats(){
   const cats=MENU[curMenu].map(g=>g.cat);
   catsEl.innerHTML=['all',...cats].map(c=>`<button role="tab" aria-selected="${c===curCat}" data-cat="${esc(c)}">${c==='all'?'Everything':esc(c)}</button>`).join('');
 }
+const openCats=new Set();
+const MIN_SHOWN=4;
+const dishLi=it=>`<li class="dish">${thumb(it)}<div class="dish__body"><div class="dish__top"><span class="dish__name">${esc(it[0])}</span><span class="dish__fill"></span><span class="dish__price">${esc(it[1])}</span></div>${it[2]?`<p class="dish__desc">${esc(it[2])}</p>`:''}${it[3]?`<p class="dish__opts">${esc(it[3])}</p>`:''}</div></li>`;
 function renderList(){
   const q=searchEl.value.trim().toLowerCase();
+  const noun=n=>curMenu==='drinks'?(n===1?'drink':'drinks'):(n===1?'dish':'dishes');
   let html='', shown=0;
   MENU[curMenu].forEach(g=>{
     if(curCat!=='all' && g.cat!==curCat) return;
-    const items=g.items.filter(it=>!q || (it[0]+' '+it[2]+' '+(it[3]||'')).toLowerCase().includes(q));
-    if(!items.length) return;
-    shown+=items.length;
-    html+=`<h3 class="cat-title">${esc(g.cat)}<em>${items.length} ${curMenu==='drinks'?(items.length===1?'drink':'drinks'):(items.length===1?'dish':'dishes')}</em></h3>`;
+    const found=g.items.filter(it=>!q || (it[0]+' '+it[2]+' '+(it[3]||'')).toLowerCase().includes(q));
+    if(!found.length) return;
+    shown+=found.length;
+    // photos first, original order kept within each group
+    const items=[...found.filter(it=>DISH_PHOTOS[it[0]]),...found.filter(it=>!DISH_PHOTOS[it[0]])];
+    const withPh=items.filter(it=>DISH_PHOTOS[it[0]]).length;
+    const key=curMenu+'|'+g.cat;
+    let limit=q?items.length:Math.max(withPh,Math.min(MIN_SHOWN,items.length));
+    if(items.length-limit<2) limit=items.length; // never hide just one item
+    const open=openCats.has(key)||limit>=items.length;
+    const vis=open?items:items.slice(0,limit);
+    html+=`<h3 class="cat-title">${esc(g.cat)}<em>${found.length} ${noun(found.length)}</em></h3>`;
     if(g.note) html+=`<p class="cat-note">${esc(g.note)}</p>`;
-    html+='<ul class="dishes">'+items.map(it=>`<li class="dish">${thumb(it)}<div class="dish__body"><div class="dish__top"><span class="dish__name">${esc(it[0])}</span><span class="dish__fill"></span><span class="dish__price">${esc(it[1])}</span></div>${it[2]?`<p class="dish__desc">${esc(it[2])}</p>`:''}${it[3]?`<p class="dish__opts">${esc(it[3])}</p>`:''}</div></li>`).join('')+'</ul>';
+    html+='<ul class="dishes">'+vis.map(dishLi).join('')+'</ul>';
+    if(limit<items.length){
+      const more=items.length-limit;
+      html+=`<button type="button" class="more-btn" data-more="${esc(key)}" aria-expanded="${open}">${open?'Show fewer':`Show ${more} more ${noun(more)}`}<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="transform:rotate(${open?180:0}deg)"><path d="m6 9 6 6 6-6"/></svg></button>`;
+    }
   });
   listEl.innerHTML = shown? html : `<p class="empty">Nothing on the ${curMenu} menu matches “${esc(q)}”. Try a different word, or switch to ${curMenu==='drinks'?'dinner':'drinks'}.</p>`;
   const key = curCat!=='all'?curCat:MENU[curMenu][0].cat;
@@ -932,6 +951,15 @@ $$('.seg button').forEach(b=>b.addEventListener('click',()=>{
 }));
 catsEl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;curCat=b.dataset.cat;renderCats();renderList();});
 searchEl.addEventListener('input',renderList);
+listEl.addEventListener('click',e=>{
+  const b=e.target.closest('[data-more]'); if(!b) return;
+  const k=b.dataset.more, wasOpen=openCats.has(k);
+  wasOpen?openCats.delete(k):openCats.add(k);
+  renderList();
+  const nb=listEl.querySelector(`[data-more="${CSS.escape(k)}"]`);
+  if(wasOpen&&nb){ nb.scrollIntoView({block:'center'}); }
+  if(nb) nb.focus({preventScroll:true});
+});
 renderCats(); renderList();
 $('#dishCount').dataset.count = MENU.dinner.reduce((n,g)=>n+g.items.length,0);
 $('#dishCount').textContent = $('#dishCount').dataset.count;
