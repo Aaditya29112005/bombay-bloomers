@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Bombay Bloomers: contemporary and authentic Indian cuisine in Randwick and Neutral Bay, Sydney, since 1987.">
+<meta name="description" content="Bombay Bloomers: Indian kitchen and cocktail bar at The Spot, Randwick, and in Neutral Bay, Sydney, since 1987.">
 <link rel="icon" href="img/monkey.png">
 <title>Bombay Bloomers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,6 +197,27 @@ p{margin:0}
 @keyframes stroll{from{transform:translateX(-140px)}to{transform:translateX(calc(100vw + 40px))}}
 .marquee-wrap{position:relative;padding-top:44px;background:var(--ink-2)}
 
+/* bar */
+.barsec{padding-block:clamp(80px,10vw,140px);background:var(--ink)}
+.barsec__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,5vw,80px);align-items:center}
+.barsec__media{position:relative;min-width:0}
+.barsec__media .main{border-radius:18px;overflow:hidden;aspect-ratio:4/5}
+.barsec__media .main img{width:100%;height:100%;object-fit:cover}
+.barsec__media .inset{position:absolute;right:-18px;bottom:-26px;width:42%;border-radius:14px;overflow:hidden;aspect-ratio:3/4;border:4px solid var(--ink);box-shadow:0 24px 50px rgba(0,0,0,.5)}
+.barsec__media .inset img{width:100%;height:100%;object-fit:cover}
+.barsec__text{display:grid;gap:22px;min-width:0}
+.barsec__text h2{font-size:clamp(3rem,7vw,6.2rem);color:var(--paper)}
+.barsec__text .lede{color:var(--rose)}
+.barsec__text p{color:var(--muted);max-width:52ch}
+.pours{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
+.pour{padding:18px 12px 18px 0;display:grid;gap:4px}
+.pour+.pour{border-left:1px solid var(--line);padding-left:14px}
+.pour b{font-family:var(--f-display);font-weight:900;font-size:clamp(2rem,3.4vw,2.8rem);line-height:.9;color:var(--saffron);font-variant-numeric:tabular-nums}
+.pour span{font-size:.86rem;color:var(--muted)}
+.sips{display:flex;flex-wrap:wrap;gap:8px}
+.sips span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.86rem}
+.barsec__btns{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:860px){.barsec__grid{grid-template-columns:1fr}.barsec__media .inset{right:10px}.pours{grid-template-columns:1fr 1fr}.pour:nth-child(3){border-left:0;padding-left:0}.pour:nth-child(n+3){border-top:1px solid var(--line)}}
 /* menu (paper) */
 .menu{background:var(--paper);color:var(--paper-ink);padding-block:clamp(80px,10vw,140px)}
 .menu__head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
@@ -367,6 +388,7 @@ p{margin:0}
     <nav class="nav__links" aria-label="Main">
       <a href="#story">Our story</a>
       <a href="#menu">Menu</a>
+      <a href="#bar">Bar</a>
       <a href="#room">The room</a>
       <a href="#visit">Visit</a>
       <a href="https://giftcards.nowbookit.com/cards/card-selection?accountid=e6a39e14-0995-4432-9251-f90afc7bba7a&amp;venueid=10826&amp;theme=light&amp;accent=106,47,43" target="_blank" rel="noopener">Gift vouchers</a>
@@ -384,6 +406,7 @@ p{margin:0}
   <nav aria-label="Mobile">
     <a href="#story">Our story</a>
     <a href="#menu">Menu</a>
+    <a href="#bar">Bar</a>
     <a href="#room">The room</a>
     <a href="#order">Order</a>
     <a href="#visit">Visit</a>
@@ -401,7 +424,7 @@ p{margin:0}
     <p style="color:var(--paper-muted)">Both kitchens are open seven days, for lunch and dinner.</p>
     <div class="sheet__opts">
       <a class="venue-opt" href="https://bookings.nowbookit.com/?accountid=e6a39e14-0995-4432-9251-f90afc7bba7a&amp;venueid=10826&amp;theme=light&amp;colors=hex,6a2f2b" target="_blank" rel="noopener">
-        <div><strong>Randwick</strong><span>49 Saint Pauls Street. Our home since 1987.</span></div>
+        <div><strong>Randwick</strong><span>At The Spot, Randwick. Cooking for Randwick since 1987.</span></div>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
       <a class="venue-opt" href="https://www.sevenrooms.com/explore/bombaybloomers/reservations/create/search/" target="_blank" rel="noopener">
@@ -424,9 +447,9 @@ p{margin:0}
         <h1 class="hero__title" tabindex="0" role="button" aria-pressed="false" title="Click the name">
           <span class="wm wm--a"><span class="monkey-wrap" aria-hidden="true"><img src="img/monkey-hd.webp" alt="" width="1268" height="483"></span><img class="base" src="img/wm-bombay.webp" alt="" width="1283" height="329"><img class="gold" src="img/wm-bombay-gold.webp" alt=""></span>
           <span class="wm wm--b"><img class="base" src="img/wm-bloomers.webp" alt="" width="1614" height="333"><img class="gold" src="img/wm-bloomers-gold.webp" alt=""></span>
-          <span class="vh">Bombay Bloomers, contemporary and authentic Indian cuisine</span>
+          <span class="vh">Bombay Bloomers, Indian kitchen and cocktail bar</span>
         </h1>
-        <p class="tagline">Contemporary &amp; authentic Indian cuisine</p>
+        <p class="tagline">Indian kitchen &amp; cocktail bar</p>
         <div class="hero__btns">
           <button class="btn btn--fill" type="button" data-book>Book a table</button>
           <a class="btn btn--line" href="#menu">See the menu</a>
@@ -451,13 +474,14 @@ p{margin:0}
         </div>
       </div>
       <div class="story__text">
-        <h2 class="rv">A Randwick institution with a Bombay heart</h2>
-        <p class="lede rv">Since 1987 our kitchen has cooked the dishes we grew up on, alongside the newer flavours Sydney fell in love with.</p>
-        <p>Bombay Bloomers opened on Saint Pauls Street almost four decades ago and has fed the neighbourhood ever since. The recipes have been passed down through generations, cooked by a team of seasoned chefs who balance fresh ingredients with a deep shelf of spices.</p>
+        <h2 class="rv">Flavours from every corner of India</h2>
+        <p class="lede rv">Punjabi tandoor, Kashmiri rogan josh, Goan vindaloo, Kerala coconut curries and crisp South Indian dosa, all from one kitchen in Randwick.</p>
+        <p>Bombay Bloomers first opened its doors on Perouse Road in Randwick and has fed the neighbourhood since 1987. In 2019 we moved to The Spot, Randwick, where you will find us today. The recipes have been passed down through generations, cooked by a team of seasoned chefs who balance fresh ingredients with a deep shelf of spices.</p>
+        <p>Pull up a seat at the bar, too. We pour our own signature cocktails, classics, mocktails, Kingfisher on tap and a wine list from Australia, New Zealand and France, made to go with a plate of something from the tandoor.</p>
         <p>Today the same menu and the same warmth also live across the bridge in Neutral Bay. Two rooms with one way of cooking: do it properly and share it generously.</p>
         <div class="chef">
           <img src="img/monkey.png" alt="">
-          <div><strong>Chef Varinder Singh</strong><span class="small">37 years of cooking behind every plate.</span></div>
+          <div><strong>Chef Varinder Singh</strong><span class="small">19 years in professional kitchens behind every plate.</span></div>
         </div>
       </div>
     </div>
@@ -484,6 +508,27 @@ p{margin:0}
       <div class="marquee__track" id="mq"></div>
     </div>
   </div>
+
+  <!-- BAR -->
+  <section class="barsec" id="bar" aria-labelledby="barTitle">
+    <div class="wrap barsec__grid">
+      <div class="barsec__media">
+        <div class="main"><img src="img/bar.webp" alt="The marble bar at Bombay Bloomers with a wall of spirits" loading="lazy"></div>
+        <div class="inset"><img src="img/tikka-martini.webp" alt="A cocktail served with chicken tikka" loading="lazy"></div>
+      </div>
+      <div class="barsec__text">
+        <h2 id="barTitle" class="rv">Come for dinner, stay for a drink</h2>
+        <p class="lede">Our bar mixes signature cocktails with a little spice, alongside the classics, alcohol-free mocktails, beer, cider and wine.</p>
+        <p>Start with a Bombay Bloomers Margarita in chilli mango, try The Spot Special with coconut, curry leaves and green chilli, or keep it simple with a cold Kingfisher on tap. Pull up a stool at the bar, or pair one with dinner.</p>
+        <div class="pours" id="pours"></div>
+        <div class="sips" id="sips"></div>
+        <div class="barsec__btns">
+          <a class="btn btn--fill" href="#menu" data-drinks>See the drinks menu</a>
+          <button class="btn btn--line" type="button" data-book>Book a table</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- MENU -->
   <section class="menu" id="menu" aria-labelledby="menuTitle">
@@ -528,7 +573,7 @@ p{margin:0}
     <div class="wrap facts__grid">
       <div class="fact"><b data-count="1987">1987</b><span>The year Randwick first sat down at our tables</span></div>
       <div class="fact"><b data-count="2">2</b><span>Sydney dining rooms, Randwick and Neutral Bay</span></div>
-      <div class="fact"><b data-count="37">37</b><span>Years of cooking behind Chef Varinder Singh</span></div>
+      <div class="fact"><b data-count="19">19</b><span>Years in professional kitchens for Chef Varinder Singh</span></div>
       <div class="fact"><b data-count="0" id="dishCount">0</b><span>Dishes on the dinner menu, from samosa to kulfi</span></div>
     </div>
   </section>
@@ -612,7 +657,7 @@ p{margin:0}
           <div class="loc__img"><img src="img/bar.webp" alt="Bombay Bloomers Randwick bar" loading="lazy"></div>
           <div class="loc__name"><h3>Randwick</h3><span class="chip" data-status="rw"></span></div>
           <dl>
-            <dt>Address</dt><dd>49 Saint Pauls Street, Randwick NSW 2031</dd>
+            <dt>Address</dt><dd>The Spot, 49 Saint Pauls Street, Randwick NSW 2031</dd>
             <dt>Lunch</dt><dd>Monday to Sunday, 11am to 3:30pm</dd>
             <dt>Dinner</dt><dd>Monday to Sunday, 5pm to 10pm</dd>
             <dt>Phone</dt><dd><a href="tel:+61412030040">0412 030 040</a></dd>
@@ -650,9 +695,9 @@ p{margin:0}
     <div class="foot__grid">
       <div>
         <img src="img/logo-cream.png" alt="Bombay Bloomers" style="width:150px;margin-bottom:16px">
-        <p>Contemporary and authentic Indian cuisine in Sydney since 1987.</p>
+        <p>Contemporary and authentic Indian cuisine, with a full cocktail bar, in Sydney since 1987.</p>
       </div>
-      <div><h4>Explore</h4><a href="#story">Our story</a><a href="#menu">Menu</a><a href="#room">The room</a><a href="#visit">Visit</a></div>
+      <div><h4>Explore</h4><a href="#story">Our story</a><a href="#menu">Menu</a><a href="#bar">Bar</a><a href="#room">The room</a><a href="#visit">Visit</a></div>
       <div><h4>Book</h4>
         <a href="https://bookings.nowbookit.com/?accountid=e6a39e14-0995-4432-9251-f90afc7bba7a&amp;venueid=10826&amp;theme=light&amp;colors=hex,6a2f2b" target="_blank" rel="noopener">Randwick</a>
         <a href="https://www.sevenrooms.com/explore/bombaybloomers/reservations/create/search/" target="_blank" rel="noopener">Neutral Bay</a>
@@ -856,6 +901,16 @@ searchEl.addEventListener('input',renderList);
 renderCats(); renderList();
 $('#dishCount').dataset.count = MENU.dinner.reduce((n,g)=>n+g.items.length,0);
 $('#dishCount').textContent = $('#dishCount').dataset.count;
+
+
+/* ---------- BAR: counts from the drinks menu ---------- */
+(function(){
+  const g=n=>(MENU.drinks.find(x=>x.cat===n)||{items:[]}).items;
+  const pours=[[g('Signature cocktails').length,'Signature cocktails'],[g('Classics our way').length,'Classic cocktails'],[g('Mocktails').length,'Mocktails'],[g('Wine').length,'Wines on the list']];
+  $('#pours').innerHTML=pours.filter(p=>p[0]).map(p=>`<div class="pour"><b>${p[0]}</b><span>${esc(p[1])}</span></div>`).join('');
+  $('#sips').innerHTML=g('Signature cocktails').slice(0,6).map(i=>`<span>${esc(i[0])}</span>`).join('');
+  $$('[data-drinks]').forEach(a=>a.addEventListener('click',()=>{ const t=$('#tab-drinks'); if(t) t.click(); }));
+})();
 
 /* ---------- SIGNATURES ---------- */
 const SIG=[
