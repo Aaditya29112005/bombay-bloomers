@@ -241,7 +241,26 @@ p{margin:0}
 .cat-title em{font-family:var(--f-serif);font-style:italic;text-transform:none;font-weight:400;font-size:1.05rem;color:var(--paper-muted)}
 .cat-note{color:var(--paper-muted);font-size:.92rem;margin-bottom:10px}
 .dishes{list-style:none;margin:0 0 34px;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
-.dish{padding:16px 0;border-bottom:1px dashed var(--paper-line);display:grid;gap:4px}
+.dish{padding:14px 0;border-bottom:1px dashed var(--paper-line);display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;align-items:start}
+.dish__body{display:grid;gap:4px;min-width:0}
+.dish__ph{width:76px;height:76px;border-radius:12px;overflow:hidden;border:0;padding:0;background:var(--oxblood);cursor:zoom-in;display:block;box-shadow:0 6px 14px rgba(58,23,20,.18);transition:transform .25s}
+.dish__ph:hover{transform:scale(1.05)}
+.dish__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.dish__ph--none{cursor:default;display:grid;place-items:center;background:rgba(106,47,43,.1);box-shadow:none}
+.dish__ph--none:hover{transform:none}
+.dish__ph--none img{width:70%;height:auto;opacity:.35;object-fit:contain}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(15,7,6,.86);display:grid;place-items:center;padding:var(--gut);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.lb__card{position:relative;width:min(560px,100%);max-height:92vh;display:grid;grid-template-rows:minmax(0,1fr) auto;background:var(--paper);color:var(--paper-ink);border-radius:20px;overflow:hidden}
+.lb__card img{width:100%;height:100%;max-height:70vh;object-fit:cover;display:block;min-height:0}
+.lb__info{padding:18px 22px 22px;display:grid;gap:6px}
+.lb__info strong{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:1.9rem;line-height:1;color:var(--oxblood);display:flex;justify-content:space-between;gap:12px}
+.lb__info strong span{font-family:var(--f-body);font-size:1.05rem;font-weight:700;text-transform:none;white-space:nowrap}
+.lb__info p{color:var(--paper-muted);font-size:.95rem}
+.lb .x{background:rgba(243,230,211,.92);border:0;top:12px;right:12px;z-index:2}
+.sipstrip{display:flex;gap:14px;overflow-x:auto;padding:46px var(--gut) 6px;scroll-snap-type:x mandatory;max-width:var(--maxw);margin-inline:auto;scrollbar-width:thin}
+.sipcard{flex:none;width:clamp(160px,17vw,210px);scroll-snap-align:start;display:grid;gap:10px;margin:0}
+.sipcard img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;display:block}
+.sipcard figcaption{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:1.25rem;line-height:1;color:var(--paper)}
 .dish__top{display:flex;align-items:baseline;gap:10px}
 .dish__name{font-weight:700;font-size:1.02rem}
 .dish__fill{flex:1;border-bottom:1px dotted rgba(106,47,43,.35);transform:translateY(-4px);min-width:12px}
@@ -514,19 +533,28 @@ p{margin:0}
     <div class="wrap barsec__grid">
       <div class="barsec__media">
         <div class="main"><img src="img/bar.webp" alt="The marble bar at Bombay Bloomers with a wall of spirits" loading="lazy"></div>
-        <div class="inset"><img src="img/tikka-martini.webp" alt="A cocktail served with chicken tikka" loading="lazy"></div>
+        <div class="inset"><img src="img/bar-pour.webp" alt="A bartender straining a chilli mango margarita" loading="lazy"></div>
       </div>
       <div class="barsec__text">
         <h2 id="barTitle" class="rv">Come for dinner, stay for a drink</h2>
         <p class="lede">Our bar mixes signature cocktails with a little spice, alongside the classics, alcohol-free mocktails, beer, cider and wine.</p>
         <p>Start with a Bombay Bloomers Margarita in chilli mango, try The Spot Special with coconut, curry leaves and green chilli, or keep it simple with a cold Kingfisher on tap. Pull up a stool at the bar, or pair one with dinner.</p>
         <div class="pours" id="pours"></div>
-        <div class="sips" id="sips"></div>
         <div class="barsec__btns">
           <a class="btn btn--fill" href="#menu" data-drinks>See the drinks menu</a>
           <button class="btn btn--line" type="button" data-book>Book a table</button>
         </div>
       </div>
+    </div>
+    <div class="sipstrip" aria-label="Drinks from our bar">
+      <figure class="sipcard"><img src="img/bar-margarita.webp" alt="Bombay Bloomers Margarita" loading="lazy"><figcaption>Bombay Bloomers Margarita</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-hello-summer.webp" alt="Hello Summer" loading="lazy"><figcaption>Hello Summer</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-whisky-sour.webp" alt="Whisky sour" loading="lazy"><figcaption>Whisky sour</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-blue-passion.webp" alt="Blue passion" loading="lazy"><figcaption>Blue passion</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-negroni.webp" alt="Negroni" loading="lazy"><figcaption>Negroni</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-amaretto.webp" alt="Amaretto sour" loading="lazy"><figcaption>Amaretto sour</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-pina-colada.webp" alt="Piña colada" loading="lazy"><figcaption>Piña colada</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-kingfisher.webp" alt="Kingfisher on tap" loading="lazy"><figcaption>Kingfisher on tap</figcaption></figure>
     </div>
   </section>
 
@@ -861,10 +889,16 @@ const PHOTOS = {
   "Starters":"img/feast-marble.webp","Tandoor & grill":"img/mint-chop.webp","Tasting platters":"img/feast-marble.webp",
   "Dosa":"img/dosa-cocktail.webp","Curry pots":"img/prawn-malabar.webp","Maharaja banquet":"img/feast-spread.webp",
   "Breads & rice":"img/table-for-two.webp","Sides":"img/table-for-two.webp","Desserts":"img/feast-spread.webp",
-  "Lunch specials":"img/table-for-two.webp","Signature cocktails":"img/tikka-martini.webp","Classics our way":"img/night-spread.webp",
-  "Mocktails":"img/dosa-cocktail.webp","Beer & cider":"img/bar.webp","Wine":"img/bar-wide.webp"
+  "Lunch specials":"img/table-for-two.webp","Signature cocktails":"img/bar-margarita.webp","Classics our way":"img/bar-negroni.webp",
+  "Mocktails":"img/menu/virgin-lychee-colada-lg.webp","Beer & cider":"img/bar-kingfisher.webp","Wine":"img/bar-wide.webp"
 };
 
+const DISH_PHOTOS = {"Onion & spinach bhaji (4 pc)": "onion-spinach-bhaji-4-pc", "Amritsari tikki chaat": "amritsari-tikki-chaat", "Pani puri (gol gappa)": "pani-puri-gol-gappa", "Pani puri (5 pc)": "pani-puri-5-pc", "Chaat papdi": "chaat-papdi", "Papdi chaat": "papdi-chaat", "Chicken pakora": "chicken-pakora", "Fish Amritsari (4 pc)": "fish-amritsari-4-pc", "Paneer tikka (4 pc)": "paneer-tikka-4-pc", "Murg malai kabab (4 pc)": "murg-malai-kabab-4-pc", "Chooza tikka (4 pc)": "chooza-tikka-4-pc", "Tandoori chicken": "tandoori-chicken", "Hariyali mint chop (3 pc)": "hariyali-mint-chop-3-pc", "Seekh kebab (4 pc)": "seekh-kebab-4-pc", "Tandoori mixed platter": "tandoori-mixed-platter", "Classic masala dosa": "classic-masala-dosa", "Mysore masala dosa": "mysore-masala-dosa", "Butter chicken (murg makhani)": "butter-chicken-murg-makhani", "Prawn Malabar": "prawn-malabar", "Punjabi chole": "punjabi-chole", "Chickpea masala": "chickpea-masala", "Maharaja banquet": "maharaja-banquet", "Garlic naan": "garlic-naan", "Saffron rice": "saffron-rice", "Rasmalai": "rasmalai", "Kulfi": "kulfi", "Gulab jamun": "gulab-jamun", "Bombay Bloomers thali": "bombay-bloomers-thali", "Curry in a hurry with rice": "curry-in-a-hurry-with-rice", "The Spot Special": "the-spot-special", "Bombay Bloomers Margarita": "bombay-bloomers-margarita", "Hello Summer": "hello-summer", "Baboon Bum": "baboon-bum", "Bombay Motai": "bombay-motai", "Girls Dream": "girls-dream", "Peach Piña Colada": "peach-pi-a-colada", "Forever & Always": "forever-always", "Matrimoni Martini": "matrimoni-martini", "Tommy's Martini": "tommy-s-martini", "Martini": "martini", "Summer apple": "summer-apple", "Caipiroska": "caipiroska", "Whisky sour": "whisky-sour", "Amaretto sour": "amaretto-sour", "Negroni": "negroni", "Old fashioned": "old-fashioned", "Blue passion": "blue-passion", "Piña colada": "pi-a-colada", "Peach iced tea": "peach-iced-tea", "Naked mojito": "naked-mojito", "Pink & sour spritz": "pink-sour-spritz", "Virgin lychee colada": "virgin-lychee-colada", "Lychee like it": "lychee-like-it", "Kingfisher on tap": "kingfisher-on-tap"};
+const thumb = it => {
+  const sl = DISH_PHOTOS[it[0]];
+  if(!sl) return `<span class="dish__ph dish__ph--none" aria-hidden="true"><img src="img/monkey.png" alt=""></span>`;
+  return `<button type="button" class="dish__ph" data-ph="${sl}" aria-label="See a photo of ${esc(it[0])}"><img src="img/menu/${sl}.webp" alt="" loading="lazy" width="240" height="240"></button>`;
+};
 /* ---------- MENU UI ---------- */
 let curMenu="dinner", curCat="all";
 const catsEl=$('#cats'), listEl=$('#menuList'), searchEl=$('#menuSearch'), photoEl=$('#menuPhoto');
@@ -881,9 +915,9 @@ function renderList(){
     const items=g.items.filter(it=>!q || (it[0]+' '+it[2]+' '+(it[3]||'')).toLowerCase().includes(q));
     if(!items.length) return;
     shown+=items.length;
-    html+=`<h3 class="cat-title">${esc(g.cat)}<em>${items.length} ${items.length===1?'dish':'dishes'}</em></h3>`;
+    html+=`<h3 class="cat-title">${esc(g.cat)}<em>${items.length} ${curMenu==='drinks'?(items.length===1?'drink':'drinks'):(items.length===1?'dish':'dishes')}</em></h3>`;
     if(g.note) html+=`<p class="cat-note">${esc(g.note)}</p>`;
-    html+='<ul class="dishes">'+items.map(it=>`<li class="dish"><div class="dish__top"><span class="dish__name">${esc(it[0])}</span><span class="dish__fill"></span><span class="dish__price">${esc(it[1])}</span></div>${it[2]?`<p class="dish__desc">${esc(it[2])}</p>`:''}${it[3]?`<p class="dish__opts">${esc(it[3])}</p>`:''}</li>`).join('')+'</ul>';
+    html+='<ul class="dishes">'+items.map(it=>`<li class="dish">${thumb(it)}<div class="dish__body"><div class="dish__top"><span class="dish__name">${esc(it[0])}</span><span class="dish__fill"></span><span class="dish__price">${esc(it[1])}</span></div>${it[2]?`<p class="dish__desc">${esc(it[2])}</p>`:''}${it[3]?`<p class="dish__opts">${esc(it[3])}</p>`:''}</div></li>`).join('')+'</ul>';
   });
   listEl.innerHTML = shown? html : `<p class="empty">Nothing on the ${curMenu} menu matches “${esc(q)}”. Try a different word, or switch to ${curMenu==='drinks'?'dinner':'drinks'}.</p>`;
   const key = curCat!=='all'?curCat:MENU[curMenu][0].cat;
@@ -908,8 +942,27 @@ $('#dishCount').textContent = $('#dishCount').dataset.count;
   const g=n=>(MENU.drinks.find(x=>x.cat===n)||{items:[]}).items;
   const pours=[[g('Signature cocktails').length,'Signature cocktails'],[g('Classics our way').length,'Classic cocktails'],[g('Mocktails').length,'Mocktails'],[g('Wine').length,'Wines on the list']];
   $('#pours').innerHTML=pours.filter(p=>p[0]).map(p=>`<div class="pour"><b>${p[0]}</b><span>${esc(p[1])}</span></div>`).join('');
-  $('#sips').innerHTML=g('Signature cocktails').slice(0,6).map(i=>`<span>${esc(i[0])}</span>`).join('');
   $$('[data-drinks]').forEach(a=>a.addEventListener('click',()=>{ const t=$('#tab-drinks'); if(t) t.click(); }));
+})();
+
+
+/* ---------- DISH PHOTO LIGHTBOX ---------- */
+(function(){
+  const lb=document.createElement('div'); lb.className='lb'; lb.hidden=true; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true');
+  lb.innerHTML='<div class="lb__card"><button class="x" type="button" aria-label="Close photo">&times;</button><img alt=""><div class="lb__info"><strong></strong><p></p></div></div>';
+  document.body.appendChild(lb);
+  const img=lb.querySelector('img'), st=lb.querySelector('strong'), pp=lb.querySelector('p');
+  const find=sl=>{ for(const k of Object.keys(MENU)) for(const g of MENU[k]) for(const it of g.items) if(DISH_PHOTOS[it[0]]===sl) return it; };
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-ph]'); if(!b) return;
+    const it=find(b.dataset.ph)||['','',''];
+    img.src='img/menu/'+b.dataset.ph+'-lg.webp'; img.alt=it[0];
+    st.innerHTML=esc(it[0])+'<span>'+(/^\d/.test(it[1])?'$':'')+esc(it[1])+'</span>'; pp.textContent=it[2]||'';
+    lb.hidden=false; lb.querySelector('.x').focus();
+  });
+  const close=()=>{lb.hidden=true;};
+  lb.addEventListener('click',e=>{ if(e.target===lb||e.target.closest('.x')) close(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
 })();
 
 /* ---------- SIGNATURES ---------- */
