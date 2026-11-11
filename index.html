@@ -79,7 +79,8 @@ p{margin:0}
 .nav__cta .btn{padding:.75em 1.2em;font-size:.88rem}
 .burger{display:none;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);background:none;color:var(--text);cursor:pointer;place-items:center}
 .burger span{display:block;width:18px;height:1.5px;background:currentColor;margin:4px auto}
-@media (max-width:920px){.nav__links{display:none}.nav__cta .btn--line{display:none}.burger{display:grid}.nav__cta{margin-left:auto}}
+@media (max-width:920px){.nav__links{display:none}.burger{display:grid}.nav__cta{margin-left:auto;gap:8px}}
+@media (max-width:520px){.nav__logo img{height:38px}.nav__cta .btn{padding:.65em .85em;font-size:.8rem}.burger{width:40px;height:40px}}
 
 /* book sheet + overlay menu */
 .sheet{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:rgba(15,7,6,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:var(--gut)}
@@ -416,7 +417,7 @@ p{margin:0}
       <a href="https://giftcards.nowbookit.com/cards/card-selection?accountid=e6a39e14-0995-4432-9251-f90afc7bba7a&amp;venueid=10826&amp;theme=light&amp;accent=106,47,43" target="_blank" rel="noopener">Gift vouchers</a>
     </nav>
     <div class="nav__cta">
-      <a class="btn btn--line" href="#order">Order online</a>
+      <button class="btn btn--line" type="button" data-order>Order online</button>
       <button class="btn btn--fill" type="button" data-book>Book a table</button>
       <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
     </div>
@@ -435,6 +436,7 @@ p{margin:0}
   </nav>
   <div class="overlay__foot">
     <button class="btn btn--fill" type="button" data-book>Book a table</button>
+    <button class="btn btn--line" type="button" data-order>Order online</button>
     <a class="btn btn--line" href="https://giftcards.nowbookit.com/cards/card-selection?accountid=e6a39e14-0995-4432-9251-f90afc7bba7a&amp;venueid=10826&amp;theme=light&amp;accent=106,47,43" target="_blank" rel="noopener">Gift vouchers</a>
   </div>
 </div>
@@ -451,6 +453,25 @@ p{margin:0}
       </a>
       <a class="venue-opt" href="https://www.sevenrooms.com/explore/bombaybloomers/reservations/create/search/" target="_blank" rel="noopener">
         <div><strong>Neutral Bay</strong><span>1/19-21 Grosvenor Street. Our North Shore room.</span></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="sheet" id="orderSheet" hidden role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+  <div class="sheet__card">
+    <button class="x" type="button" data-close-order aria-label="Close">&times;</button>
+    <h3 id="orderTitle">Order from which kitchen?</h3>
+    <p style="color:var(--paper-muted)">Order online for pickup, straight from the kitchen nearest you.</p>
+    <div class="sheet__opts">
+      <a class="venue-opt" href="https://bombaybloomersrandwick.square.site" target="_blank" rel="noopener">
+        <div><strong>Randwick</strong><span>The Spot, 49 Saint Pauls Street, Randwick</span></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <a class="venue-opt" href="https://bombaybloomers.square.site" target="_blank" rel="noopener">
+        <div><strong>Neutral Bay</strong><span>1/19-21 Grosvenor Street, Neutral Bay</span></div>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
     </div>
@@ -474,7 +495,7 @@ p{margin:0}
         <p class="tagline">Indian kitchen &amp; cocktail bar</p>
         <div class="hero__btns">
           <button class="btn btn--fill" type="button" data-book>Book a table</button>
-          <a class="btn btn--line" href="#menu">See the menu</a>
+          <button class="btn btn--line" type="button" data-order>Order online</button>
         </div>
       <div class="status" id="heroStatus"></div>
       </div>
@@ -542,7 +563,6 @@ p{margin:0}
         <h2 id="barTitle" class="rv">Come for dinner, stay for a drink</h2>
         <p class="lede">Our bar mixes signature cocktails with a little spice, alongside the classics, alcohol-free mocktails, beer, cider and wine.</p>
         <p>Start with a Bombay Bloomers Margarita in chilli mango, try The Spot Special with coconut, curry leaves and green chilli, or keep it simple with a cold Kingfisher on tap. Pull up a stool at the bar, or pair one with dinner.</p>
-        <div class="pours" id="pours"></div>
         <div class="barsec__btns">
           <a class="btn btn--fill" href="#menu" data-drinks>See the drinks menu</a>
           <button class="btn btn--line" type="button" data-book>Book a table</button>
@@ -551,12 +571,12 @@ p{margin:0}
     </div>
     <div class="sipstrip" aria-label="Drinks from our bar">
       <figure class="sipcard"><img src="img/bar-margarita.webp" alt="Bombay Bloomers Margarita" loading="lazy"><figcaption>Bombay Bloomers Margarita</figcaption></figure>
-      <figure class="sipcard"><img src="img/bar-hello-summer.webp" alt="Hello Summer" loading="lazy"><figcaption>Hello Summer</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-spot-special.webp" alt="The Spot Special" loading="lazy"><figcaption>The Spot Special</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-aperol.webp" alt="Aperol spritz" loading="lazy"><figcaption>Aperol spritz</figcaption></figure>
       <figure class="sipcard"><img src="img/bar-whisky-sour.webp" alt="Whisky sour" loading="lazy"><figcaption>Whisky sour</figcaption></figure>
-      <figure class="sipcard"><img src="img/bar-blue-passion.webp" alt="Blue passion" loading="lazy"><figcaption>Blue passion</figcaption></figure>
       <figure class="sipcard"><img src="img/bar-negroni.webp" alt="Negroni" loading="lazy"><figcaption>Negroni</figcaption></figure>
       <figure class="sipcard"><img src="img/bar-amaretto.webp" alt="Amaretto sour" loading="lazy"><figcaption>Amaretto sour</figcaption></figure>
-      <figure class="sipcard"><img src="img/bar-pina-colada.webp" alt="Piña colada" loading="lazy"><figcaption>Piña colada</figcaption></figure>
+      <figure class="sipcard"><img src="img/bar-martini.webp" alt="Martini" loading="lazy"><figcaption>Martini</figcaption></figure>
       <figure class="sipcard"><img src="img/bar-kingfisher.webp" alt="Kingfisher on tap" loading="lazy"><figcaption>Kingfisher on tap</figcaption></figure>
     </div>
   </section>
@@ -701,7 +721,7 @@ p{margin:0}
           </div>
         </article>
         <article class="loc">
-          <div class="loc__img"><img src="img/tikka-martini.webp" alt="Chicken tikka with a cocktail" loading="lazy"></div>
+          <div class="loc__img"><img src="img/nb-bar.webp" alt="The bar at Bombay Bloomers Neutral Bay" loading="lazy"></div>
           <div class="loc__name"><h3>Neutral Bay</h3><span class="chip" data-status="nb"></span></div>
           <dl>
             <dt>Address</dt><dd>1/19-21 Grosvenor Street, Neutral Bay NSW 2089</dd>
@@ -896,7 +916,7 @@ const PHOTOS = {
   "Mocktails":"img/menu/virgin-lychee-colada-lg.webp","Beer & cider":"img/bar-kingfisher.webp","Wine":"img/bar-wide.webp"
 };
 
-const DISH_PHOTOS = {"Onion & spinach bhaji (4 pc)": "onion-spinach-bhaji-4-pc", "Amritsari tikki chaat": "amritsari-tikki-chaat", "Pani puri (gol gappa)": "pani-puri-gol-gappa", "Pani puri (5 pc)": "pani-puri-5-pc", "Chaat papdi": "chaat-papdi", "Papdi chaat": "papdi-chaat", "Chicken pakora": "chicken-pakora", "Fish Amritsari (4 pc)": "fish-amritsari-4-pc", "Paneer tikka (4 pc)": "paneer-tikka-4-pc", "Murg malai kabab (4 pc)": "murg-malai-kabab-4-pc", "Chooza tikka (4 pc)": "chooza-tikka-4-pc", "Tandoori chicken": "tandoori-chicken", "Hariyali mint chop (3 pc)": "hariyali-mint-chop-3-pc", "Seekh kebab (4 pc)": "seekh-kebab-4-pc", "Tandoori mixed platter": "tandoori-mixed-platter", "Classic masala dosa": "classic-masala-dosa", "Mysore masala dosa": "mysore-masala-dosa", "Butter chicken (murg makhani)": "butter-chicken-murg-makhani", "Prawn Malabar": "prawn-malabar", "Punjabi chole": "punjabi-chole", "Chickpea masala": "chickpea-masala", "Maharaja banquet": "maharaja-banquet", "Garlic naan": "garlic-naan", "Saffron rice": "saffron-rice", "Rasmalai": "rasmalai", "Kulfi": "kulfi", "Gulab jamun": "gulab-jamun", "Bombay Bloomers thali": "bombay-bloomers-thali", "Curry in a hurry with rice": "curry-in-a-hurry-with-rice", "The Spot Special": "the-spot-special", "Bombay Bloomers Margarita": "bombay-bloomers-margarita", "Hello Summer": "hello-summer", "Baboon Bum": "baboon-bum", "Bombay Motai": "bombay-motai", "Girls Dream": "girls-dream", "Peach Piña Colada": "peach-pi-a-colada", "Forever & Always": "forever-always", "Matrimoni Martini": "matrimoni-martini", "Tommy's Martini": "tommy-s-martini", "Martini": "martini", "Summer apple": "summer-apple", "Caipiroska": "caipiroska", "Whisky sour": "whisky-sour", "Amaretto sour": "amaretto-sour", "Negroni": "negroni", "Old fashioned": "old-fashioned", "Blue passion": "blue-passion", "Piña colada": "pi-a-colada", "Peach iced tea": "peach-iced-tea", "Naked mojito": "naked-mojito", "Pink & sour spritz": "pink-sour-spritz", "Virgin lychee colada": "virgin-lychee-colada", "Lychee like it": "lychee-like-it", "Kingfisher on tap": "kingfisher-on-tap"};
+const DISH_PHOTOS = {"Onion & spinach bhaji (4 pc)": "onion-spinach-bhaji-4-pc", "Amritsari tikki chaat": "amritsari-tikki-chaat", "Pani puri (gol gappa)": "pani-puri-gol-gappa", "Pani puri (5 pc)": "pani-puri-5-pc", "Chaat papdi": "chaat-papdi", "Papdi chaat": "papdi-chaat", "Chicken pakora": "chicken-pakora", "Fish Amritsari (4 pc)": "fish-amritsari-4-pc", "Paneer tikka (4 pc)": "paneer-tikka-4-pc", "Chooza tikka (4 pc)": "chooza-tikka-4-pc", "Tandoori chicken": "tandoori-chicken", "Hariyali mint chop (3 pc)": "hariyali-mint-chop-3-pc", "Seekh kebab (4 pc)": "seekh-kebab-4-pc", "Tandoori mixed platter": "tandoori-mixed-platter", "Classic masala dosa": "classic-masala-dosa", "Mysore masala dosa": "mysore-masala-dosa", "Butter chicken (murg makhani)": "butter-chicken-murg-makhani", "Prawn Malabar": "prawn-malabar", "Punjabi chole": "punjabi-chole", "Chickpea masala": "chickpea-masala", "Maharaja banquet": "maharaja-banquet", "Garlic naan": "garlic-naan", "Saffron rice": "saffron-rice", "Rasmalai": "rasmalai", "Kulfi": "kulfi", "Gulab jamun": "gulab-jamun", "Bombay Bloomers thali": "bombay-bloomers-thali", "Curry in a hurry with rice": "curry-in-a-hurry-with-rice", "The Spot Special": "the-spot-special", "Bombay Bloomers Margarita": "bombay-bloomers-margarita", "Baboon Bum": "baboon-bum", "Bombay Motai": "bombay-motai", "Girls Dream": "girls-dream", "Peach Piña Colada": "peach-pi-a-colada", "Forever & Always": "forever-always", "Matrimoni Martini": "matrimoni-martini", "Tommy's Martini": "tommy-s-martini", "Martini": "martini", "Summer apple": "summer-apple", "Whisky sour": "whisky-sour", "Amaretto sour": "amaretto-sour", "Negroni": "negroni", "Old fashioned": "old-fashioned", "Pink & sour spritz": "pink-sour-spritz", "Virgin lychee colada": "virgin-lychee-colada", "Lychee like it": "lychee-like-it", "Kingfisher on tap": "kingfisher-on-tap", "Aperol spritz": "aperol-spritz"};
 const thumb = it => {
   const sl = DISH_PHOTOS[it[0]];
   if(!sl) return `<span class="dish__ph dish__ph--none" aria-hidden="true"><img src="img/monkey.png" alt=""></span>`;
@@ -968,8 +988,6 @@ $('#dishCount').textContent = $('#dishCount').dataset.count;
 /* ---------- BAR: counts from the drinks menu ---------- */
 (function(){
   const g=n=>(MENU.drinks.find(x=>x.cat===n)||{items:[]}).items;
-  const pours=[[g('Signature cocktails').length,'Signature cocktails'],[g('Classics our way').length,'Classic cocktails'],[g('Mocktails').length,'Mocktails'],[g('Wine').length,'Wines on the list']];
-  $('#pours').innerHTML=pours.filter(p=>p[0]).map(p=>`<div class="pour"><b>${p[0]}</b><span>${esc(p[1])}</span></div>`).join('');
   $$('[data-drinks]').forEach(a=>a.addEventListener('click',()=>{ const t=$('#tab-drinks'); if(t) t.click(); }));
 })();
 
@@ -1076,12 +1094,16 @@ try{ if(Date.now() > Date.parse('2026-10-17T23:59:00+11:00')) $('#hh').hidden=tr
 /* ---------- NAV, SHEET, OVERLAY ---------- */
 const nav=$('#nav'), sheet=$('#sheet'), overlay=$('#overlay'), burger=$('#burger');
 addEventListener('scroll',()=>nav.classList.toggle('is-solid',scrollY>40),{passive:true});
-$$('[data-book]').forEach(b=>b.addEventListener('click',()=>{overlay.hidden=true;sheet.hidden=false;sheet.querySelector('a').focus();}));
+$$('[data-book]').forEach(b=>b.addEventListener('click',()=>{overlay.hidden=true;$('#orderSheet').hidden=true;sheet.hidden=false;sheet.querySelector('a').focus();}));
 $('[data-close-sheet]').addEventListener('click',()=>sheet.hidden=true);
+const orderSheet=$('#orderSheet');
+$$('[data-order]').forEach(b=>b.addEventListener('click',()=>{overlay.hidden=true;sheet.hidden=true;orderSheet.hidden=false;orderSheet.querySelector('a').focus();}));
+$('[data-close-order]').addEventListener('click',()=>orderSheet.hidden=true);
+orderSheet.addEventListener('click',e=>{if(e.target===orderSheet)orderSheet.hidden=true;});
 sheet.addEventListener('click',e=>{if(e.target===sheet)sheet.hidden=true;});
 burger.addEventListener('click',()=>{overlay.hidden=false;burger.setAttribute('aria-expanded','true');});
 $('[data-close-overlay]').addEventListener('click',()=>{overlay.hidden=true;burger.setAttribute('aria-expanded','false');});
-addEventListener('keydown',e=>{if(e.key==='Escape'){sheet.hidden=true;overlay.hidden=true;}});
+addEventListener('keydown',e=>{if(e.key==='Escape'){sheet.hidden=true;orderSheet.hidden=true;overlay.hidden=true;}});
 
 
 /* ---------- MONKEY ON THE NAME ---------- */
