@@ -114,11 +114,12 @@ p{margin:0}
 .hero__block .hero__btns{justify-content:center;margin-top:26px}
 .hero__block .status{justify-content:center}
 .hero__content a,.hero__content button,.hero__title{pointer-events:auto}
-.hero__bq{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 16px;border-radius:999px;background:rgba(27,13,11,.45);border:1px solid rgba(242,164,58,.55);color:var(--text);font-size:.9rem;text-decoration:none;backdrop-filter:blur(6px);transition:background .25s,color .25s}
+.hero__bq{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:100%;white-space:nowrap;margin:26px auto 18px;padding:9px 18px;border-radius:999px;background:rgba(27,13,11,.45);border:1px solid rgba(242,164,58,.55);color:var(--text);font-size:.9rem;text-decoration:none;backdrop-filter:blur(6px);transition:background .25s,color .25s}
 .hero__bq b{color:var(--saffron);font-weight:700}
 .hero__bq .star{color:var(--saffron)}
 .hero__bq .arr{transition:transform .25s}
 .hero__bq:hover{background:var(--saffron);color:var(--ink)}.hero__bq:hover b,.hero__bq:hover .star{color:var(--ink)}.hero__bq:hover .arr{transform:translateX(4px)}
+@media (max-width:420px){.hero__bq{font-size:.82rem;gap:6px;padding:8px 14px;margin:22px auto 16px}}
 .hero__kicker{font-family:var(--f-serif);font-style:italic;font-size:clamp(1.05rem,1.4vw,1.3rem);color:var(--paper);opacity:.9;margin-bottom:18px}
 .hero__title{margin:0;line-height:0}
 .hero__title{position:relative;display:grid;justify-items:center;gap:clamp(6px,1vw,12px);width:100%}
