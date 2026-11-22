@@ -114,6 +114,11 @@ p{margin:0}
 .hero__block .hero__btns{justify-content:center;margin-top:26px}
 .hero__block .status{justify-content:center}
 .hero__content a,.hero__content button,.hero__title{pointer-events:auto}
+.hero__bq{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 16px;border-radius:999px;background:rgba(27,13,11,.45);border:1px solid rgba(242,164,58,.55);color:var(--text);font-size:.9rem;text-decoration:none;backdrop-filter:blur(6px);transition:background .25s,color .25s}
+.hero__bq b{color:var(--saffron);font-weight:700}
+.hero__bq .star{color:var(--saffron)}
+.hero__bq .arr{transition:transform .25s}
+.hero__bq:hover{background:var(--saffron);color:var(--ink)}.hero__bq:hover b,.hero__bq:hover .star{color:var(--ink)}.hero__bq:hover .arr{transform:translateX(4px)}
 .hero__kicker{font-family:var(--f-serif);font-style:italic;font-size:clamp(1.05rem,1.4vw,1.3rem);color:var(--paper);opacity:.9;margin-bottom:18px}
 .hero__title{margin:0;line-height:0}
 .hero__title{position:relative;display:grid;justify-items:center;gap:clamp(6px,1vw,12px);width:100%}
@@ -385,6 +390,33 @@ p{margin:0}
 @media (max-width:820px){.foot__grid{grid-template-columns:1fr 1fr}}
 
 /* reveal helpers (transform only, content always visible) */
+
+/* ---------- MAHARAJA BANQUET ---------- */
+.bq{background:var(--paper);color:var(--paper-ink);padding-block:clamp(80px,10vw,140px);position:relative;overflow:hidden}
+.bq__grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
+.bq__media{position:relative;min-width:0}
+.bq__media img{width:100%;aspect-ratio:4/3.1;object-fit:cover;border-radius:18px;box-shadow:0 30px 60px rgba(58,23,20,.28)}
+.bq__price{position:absolute;right:-14px;top:-22px;width:132px;height:132px;border-radius:50%;background:var(--oxblood);color:var(--paper);display:grid;place-content:center;text-align:center;transform:rotate(8deg);box-shadow:0 18px 40px rgba(58,23,20,.35)}
+.bq__price b{font-family:var(--f-display);font-weight:800;font-size:2.1rem;line-height:1}
+.bq__price span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.bq__text{display:grid;gap:20px;min-width:0}
+.bq__eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--oxblood)}
+.bq__text h2{font-size:clamp(3rem,7vw,6.2rem);color:var(--oxblood);line-height:.92}
+.bq__lede{font-size:1.12rem;color:var(--paper-muted);max-width:50ch}
+.bq__steps{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:bq}
+.bq__steps li{counter-increment:bq;display:grid;grid-template-columns:44px 1fr;column-gap:14px;padding:14px 0;border-top:1px solid var(--paper-line)}
+.bq__steps li:last-child{border-bottom:1px solid var(--paper-line)}
+.bq__steps li::before{content:counter(bq,decimal-leading-zero);grid-row:span 2;font-family:var(--f-display);font-weight:800;font-size:1.6rem;color:var(--saffron);line-height:1.1}
+.bq__steps strong{font-size:1.05rem;color:var(--paper-ink)}
+.bq__steps span{color:var(--paper-muted);font-size:.95rem}
+.bq__cost{font-size:1rem;color:var(--paper-muted)}
+.bq__cost b{font-family:var(--f-display);font-weight:800;font-size:2.4rem;color:var(--oxblood);margin-right:6px}
+.bq__btns{display:flex;flex-wrap:wrap;gap:12px}
+.bq__book{background:var(--oxblood);border-color:var(--oxblood);color:var(--paper)}
+.bq__book:hover{background:var(--paper-ink);border-color:var(--paper-ink)}
+.bq__line{color:var(--oxblood)}
+.bq__line:hover{background:var(--oxblood);color:var(--paper)}
+@media (max-width:860px){.bq__grid{grid-template-columns:1fr}.bq__price{right:8px;width:112px;height:112px}.bq__price b{font-size:1.8rem}}
 .rv{will-change:transform}
 
 @media (prefers-reduced-motion:reduce){
@@ -411,6 +443,7 @@ p{margin:0}
     <nav class="nav__links" aria-label="Main">
       <a href="#story">Our story</a>
       <a href="#menu">Menu</a>
+      <a href="#banquet">Banquet</a>
       <a href="#bar">Bar</a>
       <a href="#room">The room</a>
       <a href="#visit">Visit</a>
@@ -429,6 +462,7 @@ p{margin:0}
   <nav aria-label="Mobile">
     <a href="#story">Our story</a>
     <a href="#menu">Menu</a>
+    <a href="#banquet">Banquet</a>
     <a href="#bar">Bar</a>
     <a href="#room">The room</a>
     <a href="#order">Order</a>
@@ -497,6 +531,7 @@ p{margin:0}
           <button class="btn btn--fill" type="button" data-book>Book a table</button>
           <button class="btn btn--line" type="button" data-order>Order online</button>
         </div>
+        <a class="hero__bq" href="#banquet"><span class="star">✦</span> The Maharaja Banquet <b>$69.90 pp</b> <span class="arr">→</span></a>
       <div class="status" id="heroStatus"></div>
       </div>
     </div>
@@ -525,6 +560,32 @@ p{margin:0}
         <div class="chef">
           <img src="img/monkey.png" alt="">
           <div><strong>Chef Varinder Singh</strong><span class="small">19 years in professional kitchens behind every plate.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MAHARAJA BANQUET -->
+  <section class="bq" id="banquet" aria-labelledby="bqTitle">
+    <div class="wrap bq__grid">
+      <div class="bq__media">
+        <img src="img/menu/maharaja-banquet-lg.webp" alt="The Maharaja Banquet spread at Bombay Bloomers: curries, tandoor, naan and rice" loading="lazy">
+        <div class="bq__price" aria-hidden="true"><b>$69.90</b><span>per person</span></div>
+      </div>
+      <div class="bq__text">
+        <span class="bq__eyebrow">The house feast</span>
+        <h2 id="bqTitle" class="rv">The Maharaja Banquet</h2>
+        <p class="bq__lede">Sit back and let the kitchen look after the whole table. A mixed entrée to start, then curries, naan and rice that keep coming until you say stop.</p>
+        <ol class="bq__steps">
+          <li><strong>Mixed entrée</strong><span>Samosa, chicken tikka, seekh kebab and onion bhaji.</span></li>
+          <li><strong>Unlimited mains</strong><span>Lamb, beef, chicken and vegetarian curries with plain and garlic naan, rice and papadums.</span></li>
+          <li><strong>Something sweet</strong><span>Add dessert for $6 per person.</span></li>
+        </ol>
+        <p class="bq__cost"><b>$69.90</b> per person</p>
+        <div class="bq__btns">
+          <button class="btn bq__book" type="button" data-book>Book the banquet</button>
+          <a class="btn btn--line bq__line" href="#menu" data-banquet>See what's included</a>
         </div>
       </div>
     </div>
@@ -690,8 +751,8 @@ p{margin:0}
         </div>
         <div class="way way--feature">
           <h3>Maharaja banquet</h3>
-          <div class="price">$64.90<span style="font-size:1.2rem;font-weight:700"> pp</span></div>
-          <p>Mixed entrée, then unlimited lamb, beef, chicken and vegetarian curries with naan, rice and papadums. Minimum four guests. Add dessert for $6 each.</p>
+          <div class="price">$69.90<span style="font-size:1.2rem;font-weight:700"> pp</span></div>
+          <p>Mixed entrée, then unlimited lamb, beef, chicken and vegetarian curries with naan, rice and papadums. Add dessert for $6 each.</p>
           <div class="way__btns"><button class="btn btn--line" type="button" data-book style="border-color:var(--ink);color:var(--ink)">Book for a group</button></div>
         </div>
       </div>
@@ -747,7 +808,7 @@ p{margin:0}
         <img src="img/logo-cream.png" alt="Bombay Bloomers" style="width:150px;margin-bottom:16px">
         <p>Contemporary and authentic Indian cuisine, with a full cocktail bar, in Sydney since 1987.</p>
       </div>
-      <div><h4>Explore</h4><a href="#story">Our story</a><a href="#menu">Menu</a><a href="#bar">Bar</a><a href="#room">The room</a><a href="#visit">Visit</a></div>
+      <div><h4>Explore</h4><a href="#story">Our story</a><a href="#menu">Menu</a><a href="#banquet">Banquet</a><a href="#bar">Bar</a><a href="#room">The room</a><a href="#visit">Visit</a></div>
       <div><h4>Book</h4>
         <a href="https://bookings.nowbookit.com/?accountid=e6a39e14-0995-4432-9251-f90afc7bba7a&amp;venueid=10826&amp;theme=light&amp;colors=hex,6a2f2b" target="_blank" rel="noopener">Randwick</a>
         <a href="https://www.sevenrooms.com/explore/bombaybloomers/reservations/create/search/" target="_blank" rel="noopener">Neutral Bay</a>
@@ -778,8 +839,8 @@ const MENU = {
  dinner:[
   {cat:"Starters",items:[
    ["Samosa (2 pc)","12","Triangular pastry stuffed with potatoes and peas."],
-   ["Onion & spinach bhaji (4 pc)","15","Crunchy onion and fresh spinach fritters."],
-   ["Amritsari tikki chaat","12","Potato cakes stuffed with spiced lentils, served with three layered sauces."],
+   ["Onion & spinach bhaji (4 pc)","18","Crunchy onion and fresh spinach fritters."],
+   ["Amritsari tikki chaat (2 pc)","12","Potato cakes stuffed with spiced lentils, served with three layered sauces."],
    ["Pani puri (gol gappa)","12","Small crispy puffed balls with tangy tamarind and mint water."],
    ["Chaat papdi","16","Crispy flat pastry layered with tamarind, mint and raita sauces."],
    ["Chicken pakora","16","Crispy chicken pieces fried with a special spice mix."],
@@ -787,11 +848,11 @@ const MENU = {
   {cat:"Tandoor & grill",items:[
    ["Paneer tikka (4 pc)","20","Marinated cottage cheese, smoke roasted, with tandoori capsicum and onion salad."],
    ["Murg malai kabab (4 pc)","20","Mild chicken breast stuffed with cheese, marinated in yoghurt, grilled in the tandoor."],
-   ["Chooza tikka (4 pc)","20","Tender boneless chicken in yoghurt and spices, grilled in the tandoor."],
-   ["Tandoori chicken","16 / 25","The tastiest Indian way to barbecue chicken.","Half 16, full 25"],
-   ["Hariyali mint chop (3 pc)","27","Lamb cutlets in a mildly spiced mint and coriander marinade, grilled in the tandoor."],
+   ["Chooza tikka (4 pc)","22","Tender boneless chicken in yoghurt and spices, grilled in the tandoor."],
+   ["Tandoori chicken","19 / 28","The tastiest Indian way to barbecue chicken.","Half 19, full 28"],
+   ["Hariyali mint chop (3 pc)","28","Lamb cutlets in a mildly spiced mint and coriander marinade, grilled in the tandoor."],
    ["Seekh kebab (4 pc)","20","Chicken and lamb on skewers, smoke roasted in the tandoor."],
-   ["Tandoori garlic prawns (5 pc)","23","King prawns in yoghurt, garlic and spices, smoke roasted in the tandoor."]]},
+   ["Tandoori garlic prawns (5 pc)","24","King prawns in yoghurt, garlic and spices, smoke roasted in the tandoor."]]},
   {cat:"Tasting platters",note:"Priced per person.",items:[
    ["Veg mix platter","22 pp","Samosa, onion and spinach bhaji, paneer tikka and Amritsari tikki."],
    ["Tandoori mixed platter","24 pp","Chooza tikka, murg malai kabab, hariyali mint chop and seekh kebab."]]},
@@ -803,65 +864,127 @@ const MENU = {
    ["Paneer dosa","18","Stuffed with spiced paneer."],
    ["Cheese dosa","18","Topped with melted cheese and potato mix."]]},
   {cat:"Curry pots",items:[
-   ["Butter chicken (murg makhani)","29","Tandoori chicken tikka cooked in tomato and cream sauce."],
+   ["Butter chicken (murg makhani)","29.50","Tandoori chicken tikka cooked in tomato and cream sauce."],
    ["Shahi korma","from 25","Cooked in a creamy cashew nut sauce.","Vegetable 25, chicken 27, beef 27, lamb 28, prawn 29"],
    ["Tikka masala","from 25","Tomato, onion and capsicum with herbs and spices.","Paneer 25, chicken 27, prawn 29"],
-   ["Hot chilli chicken","27.50","Chicken cooked in fresh chilli paste, herbs and spices."],
-   ["Saag","from 25","Puréed fresh spinach flavoured with fenugreek leaves.","Paneer 25, chicken 27, lamb 28"],
-   ["Kadai","from 25","Capsicum, tomato and onion in a traditional Peshawari style.","Paneer 25, chicken 27, prawn 29"],
+   ["Goat masala","29","Tender goat on the bone, slow cooked in a rich, aromatic Indian masala gravy."],
+   ["Hot chilli chicken","28","Chicken cooked in fresh chilli paste, herbs and spices."],
+   ["Saag","from 26","Puréed fresh spinach flavoured with fenugreek leaves.","Paneer 26, chicken 27, lamb 29"],
+   ["Kadai","from 26","Capsicum, tomato and onion in a traditional Peshawari style.","Paneer 26, chicken 27, prawn 29"],
    ["Jhalfrezi","from 27","Cooked with julienned vegetables and spices.","Chicken 27, beef 27, prawn 29"],
    ["Vindaloo","from 27","A hot and spicy Goan gravy.","Chicken 27, beef 27, lamb 28, prawn 29"],
-   ["Lamb rogan josh","28.50","Kashmiri-style lamb, slow cooked with selected spices."],
-   ["South Indian lamb","28","Lamb with fresh curry leaves, mustard seeds and South Indian spices."],
-   ["Madras beef","27.50","Hot and spicy beef with mustard seeds, curry leaves and fenugreek."],
+   ["Lamb rogan josh","29","Kashmiri-style lamb, slow cooked with selected spices."],
+   ["South Indian lamb","28.50","Lamb with fresh curry leaves, mustard seeds and South Indian spices."],
+   ["Madras beef / chicken","29","Hot and spicy beef with mustard seeds, curry leaves and fenugreek."],
    ["Fish moulli curry","29","Barramundi in coconut gravy with mustard seeds and curry leaves."],
    ["Bengali macchi","29.50","Barramundi from Eastern India, five spices tempered with mustard oil."],
    ["Prawn Malabar","29","King prawns, curry leaves and mustard seeds in a mild coconut cream sauce."],
-   ["Malai kofta","25","Cottage cheese and potato dumplings with dried fruit and nuts in almond sauce."],
+   ["Malai kofta","26","Cottage cheese and potato dumplings with dried fruit and nuts in almond sauce."],
    ["Punjabi chole","22.50","Chickpeas cooked with garam masala and herbs."],
-   ["Aloo baingan","23.50","Eggplant and potato in a fragrant five-spice blend."],
+   ["Aloo baingan","24.50","Eggplant and potato in a fragrant five-spice blend."],
    ["Dal","21.50","Mixed lentils tempered with cumin, onion and ginger."],
-   ["Punjabi gobi aloo","23.50","Cauliflower and potato dry cooked with ginger and fresh ground spices."],
-   ["Stir fry mixed vegetables","24","Fresh vegetables cooked dry with herbs and spices."]]},
-  {cat:"Maharaja banquet",note:"Minimum four guests. Add dessert for $6 per person.",items:[
-   ["Maharaja banquet","64.90 pp","Mixed entrée of samosa, chicken tikka, seekh kebab and onion bhaji, then unlimited mains: lamb, beef, chicken and vegetarian curries, plain and garlic naan, rice and papadums."]]},
+   ["Punjabi gobi aloo","24.50","Cauliflower and potato dry cooked with ginger and fresh ground spices."],
+   ["Stir fry mixed vegetables","25","Fresh vegetables cooked dry with herbs and spices."]]},
+  {cat:"Maharaja banquet",note:"Add dessert for $6 per person.",items:[
+   ["Maharaja banquet","69.90 pp","Mixed entrée of samosa, chicken tikka, seekh kebab and onion bhaji, then unlimited mains: lamb, beef, chicken and vegetarian curries, plain and garlic naan, rice and papadums."]]},
   {cat:"Breads & rice",items:[
-   ["Plain naan","4.50",""],["Garlic naan","5",""],["Cheese naan","7",""],["Cheese & garlic naan","8",""],
-   ["Peshwari naan","7.50",""],["Roti","4.50",""],["Pudina paratha","7",""],
-   ["Basmati rice","3 pp",""],["Saffron rice","3.50 pp",""],["Jeera mutter pulao","8 pp",""]]},
+   ["Plain naan","5.50",""],
+   ["Roti","5.50",""],
+   ["Garlic naan","6",""],
+   ["Cheese naan","8",""],
+   ["Cheese & garlic naan","8.50",""],
+   ["Butter naan","8.50",""],
+   ["Peshwari naan","8.50",""],
+   ["Keema naan","10.50",""],
+   ["Pudina paratha","8",""],
+   ["Basmati rice","5",""],
+   ["Saffron rice","6",""],
+   ["Jeera mutter pulao","9",""]]},
   {cat:"Sides",items:[
-   ["Katchumber","4","Diced onion, cucumber and tomato."],["Cucumber raita","4",""],["Mango chutney","3.50",""],
-   ["Mixed pickle","3.50",""],["Sliced cucumber, onion & tomato","8",""],["Papadums (4)","5","Lentil wafers."]]},
+   ["Katchumber","4","Diced onion, cucumber and tomato."],
+   ["Cucumber raita","4",""],
+   ["Mango chutney","3.50",""],
+   ["Mixed pickle","3.50",""],
+   ["Sliced cucumber, onion & tomato","8",""],
+   ["Papadums (4)","5","Lentil wafers."]]},
   {cat:"Desserts",items:[
    ["Rasmalai","12","Cottage cheese dumplings in scented reduced milk."],
-   ["Gulab jamun","9","Soft milk dumplings, lightly fried and soaked in rose water syrup."],
+   ["Gulab jamun","10","Soft milk dumplings, lightly fried and soaked in rose water syrup."],
    ["Kulfi","9","Reduced milk ice cream with cardamom. Mango, pistachio or rose."]]}
  ],
  lunch:[
   {cat:"Lunch specials",note:"Served 11am to 3:30pm.",items:[
-   ["Bombay Bloomers thali","24","One non-veg and one veg curry, rice, raita and a piece of garlic naan.","Choose from butter chicken, lamb rogan josh, dal or chickpea masala"],
+   ["Bombay Bloomers thali","25","One non-veg and one veg curry, rice, raita and a piece of garlic naan.","Choose from butter chicken, lamb rogan josh, dal or chickpea masala"],
    ["Curry in a hurry with rice","18","One non-veg and one veg curry with basmati rice."],
    ["Chicken tikka wrap","15","Tandoori chicken tikka, onion, tomato, cucumber and lettuce in naan with mint and smoky tandoori sauce."],
    ["Biryani","25 / 26","Fragrant rice and spices with your choice of protein.","Chicken 25, lamb 26"]]},
   {cat:"Starters",items:[
    ["Samosa (2 pc)","12","Triangular pastry stuffed with potatoes and peas."],
-   ["Amritsari tikki chaat","12","Potato cakes stuffed with spiced lentils and three sauces."],
-   ["Pani puri (5 pc)","12","Crispy puffs with tamarind and mint water."],
-   ["Papdi chaat","16","Crispy pastry layered with tamarind, mint and raita."],
-   ["Chooza tikka (4 pc)","20","Boneless chicken in yoghurt and spices from the tandoor."],
-   ["Chicken pakora","18","Crispy chicken with a special spice mix."],
-   ["Hot chips","9",""]]},
+   ["Onion & spinach bhaji (4 pc)","18","Crunchy onion and fresh spinach fritters."],
+   ["Amritsari tikki chaat (2 pc)","12","Potato cakes stuffed with spiced lentils, served with three layered sauces."],
+   ["Pani puri (gol gappa)","12","Small crispy puffed balls with tangy tamarind and mint water."],
+   ["Chaat papdi","16","Crispy flat pastry layered with tamarind, mint and raita sauces."],
+   ["Chicken pakora","16","Crispy chicken pieces fried with a special spice mix."],
+   ["Fish Amritsari (4 pc)","24","Barramundi fillets in a Punjabi spice mix, dusted with chickpea flour and fried."]]},
+  {cat:"Tandoor & grill",items:[
+   ["Paneer tikka (4 pc)","20","Marinated cottage cheese, smoke roasted, with tandoori capsicum and onion salad."],
+   ["Murg malai kabab (4 pc)","20","Mild chicken breast stuffed with cheese, marinated in yoghurt, grilled in the tandoor."],
+   ["Chooza tikka (4 pc)","22","Tender boneless chicken in yoghurt and spices, grilled in the tandoor."],
+   ["Tandoori chicken","19 / 28","The tastiest Indian way to barbecue chicken.","Half 19, full 28"],
+   ["Hariyali mint chop (3 pc)","28","Lamb cutlets in a mildly spiced mint and coriander marinade, grilled in the tandoor."],
+   ["Seekh kebab (4 pc)","20","Chicken and lamb on skewers, smoke roasted in the tandoor."],
+   ["Tandoori garlic prawns (5 pc)","24","King prawns in yoghurt, garlic and spices, smoke roasted in the tandoor."]]},
+  {cat:"Tasting platters",note:"Priced per person.",items:[
+   ["Veg mix platter","22 pp","Samosa, onion and spinach bhaji, paneer tikka and Amritsari tikki."],
+   ["Tandoori mixed platter","24 pp","Chooza tikka, murg malai kabab, hariyali mint chop and seekh kebab."]]},
   {cat:"Curry pots",items:[
-   ["Butter chicken (murg makhani)","29","Tandoori chicken tikka in tomato and cream sauce."],
-   ["Lamb rogan josh","28.50","Kashmiri-style lamb, slow cooked."],
-   ["Tikka masala","25 / 27","Tomato, onion and capsicum.","Paneer 25, chicken 27"],
-   ["Hot chilli chicken","27.50","Fresh chilli paste, herbs and spices."],
+   ["Butter chicken (murg makhani)","29.50","Tandoori chicken tikka cooked in tomato and cream sauce."],
+   ["Shahi korma","from 25","Cooked in a creamy cashew nut sauce.","Vegetable 25, chicken 27, beef 27, lamb 28, prawn 29"],
+   ["Tikka masala","from 25","Tomato, onion and capsicum with herbs and spices.","Paneer 25, chicken 27, prawn 29"],
+   ["Goat masala","29","Tender goat on the bone, slow cooked in a rich, aromatic Indian masala gravy."],
+   ["Hot chilli chicken","28","Chicken cooked in fresh chilli paste, herbs and spices."],
+   ["Saag","from 26","Puréed fresh spinach flavoured with fenugreek leaves.","Paneer 26, chicken 27, lamb 29"],
+   ["Kadai","from 26","Capsicum, tomato and onion in a traditional Peshawari style.","Paneer 26, chicken 27, prawn 29"],
+   ["Jhalfrezi","from 27","Cooked with julienned vegetables and spices.","Chicken 27, beef 27, prawn 29"],
    ["Vindaloo","from 27","A hot and spicy Goan gravy.","Chicken 27, beef 27, lamb 28, prawn 29"],
-   ["Fish moulli curry","29","Fish in coconut gravy with curry leaves."],
-   ["Prawn Malabar","29","King prawns in a mild coconut cream sauce."],
-   ["Malai kofta","25","Cottage cheese and potato dumplings in almond sauce."],
-   ["Chickpea masala","22.50","Chickpeas with garam masala and herbs."],
-   ["Dal","21.50","Mixed lentils with cumin, onion and ginger."]]}
+   ["Lamb rogan josh","29","Kashmiri-style lamb, slow cooked with selected spices."],
+   ["South Indian lamb","28.50","Lamb with fresh curry leaves, mustard seeds and South Indian spices."],
+   ["Madras beef / chicken","29","Hot and spicy beef with mustard seeds, curry leaves and fenugreek."],
+   ["Fish moulli curry","29","Barramundi in coconut gravy with mustard seeds and curry leaves."],
+   ["Bengali macchi","29.50","Barramundi from Eastern India, five spices tempered with mustard oil."],
+   ["Prawn Malabar","29","King prawns, curry leaves and mustard seeds in a mild coconut cream sauce."],
+   ["Malai kofta","26","Cottage cheese and potato dumplings with dried fruit and nuts in almond sauce."],
+   ["Punjabi chole","22.50","Chickpeas cooked with garam masala and herbs."],
+   ["Aloo baingan","24.50","Eggplant and potato in a fragrant five-spice blend."],
+   ["Dal","21.50","Mixed lentils tempered with cumin, onion and ginger."],
+   ["Punjabi gobi aloo","24.50","Cauliflower and potato dry cooked with ginger and fresh ground spices."],
+   ["Stir fry mixed vegetables","25","Fresh vegetables cooked dry with herbs and spices."]]},
+  {cat:"Maharaja banquet",note:"Add dessert for $6 per person.",items:[
+   ["Maharaja banquet","69.90 pp","Mixed entrée of samosa, chicken tikka, seekh kebab and onion bhaji, then unlimited mains: lamb, beef, chicken and vegetarian curries, plain and garlic naan, rice and papadums."]]},
+  {cat:"Breads & rice",items:[
+   ["Plain naan","5.50",""],
+   ["Roti","5.50",""],
+   ["Garlic naan","6",""],
+   ["Cheese naan","8",""],
+   ["Cheese & garlic naan","8.50",""],
+   ["Butter naan","8.50",""],
+   ["Peshwari naan","8.50",""],
+   ["Keema naan","10.50",""],
+   ["Pudina paratha","8",""],
+   ["Basmati rice","5",""],
+   ["Saffron rice","6",""],
+   ["Jeera mutter pulao","9",""]]},
+  {cat:"Sides",items:[
+   ["Katchumber","4","Diced onion, cucumber and tomato."],
+   ["Cucumber raita","4",""],
+   ["Mango chutney","3.50",""],
+   ["Mixed pickle","3.50",""],
+   ["Sliced cucumber, onion & tomato","8",""],
+   ["Papadums (4)","5","Lentil wafers."]]},
+  {cat:"Desserts",items:[
+   ["Rasmalai","12","Cottage cheese dumplings in scented reduced milk."],
+   ["Gulab jamun","10","Soft milk dumplings, lightly fried and soaked in rose water syrup."],
+   ["Kulfi","9","Reduced milk ice cream with cardamom. Mango, pistachio or rose."]]}
  ],
  drinks:[
   {cat:"Signature cocktails",items:[
@@ -880,31 +1003,60 @@ const MENU = {
    ["Bomb-Bay Fling","20","Vodka and Bacardi with house spice, lemon and chilli."],
    ["Bombay Festive","20","Gin, apple juice and prosecco."]]},
   {cat:"Classics our way",items:[
-   ["Martini","18","Vodka or gin, dirty or lychee."],["Limoncello spritz","20","House limoncello, prosecco and soda."],
-   ["Summer apple","18","Vanilla vodka, apple sour, lime and pineapple."],["Caipiroska","18","Vodka, fresh lime and sugar."],
-   ["Mango caipirinha","18","Rum, fresh lime, sugar and mango."],["Espresso martini","20",""],["Bloody Mary","20",""],
-   ["Long Island iced tea","28",""],["Negroni","20",""],["Whisky sour","20",""],["Amaretto sour","18",""],
-   ["Champagne cocktails","18",""],["Aperol spritz","18",""],["Cosmopolitan","20",""],["Blue passion","18",""],
-   ["Mojito","20",""],["Piña colada","18",""],["Old fashioned","18",""]]},
+   ["Martini","18","Vodka or gin, dirty or lychee."],
+   ["Limoncello spritz","20","House limoncello, prosecco and soda."],
+   ["Summer apple","18","Vanilla vodka, apple sour, lime and pineapple."],
+   ["Caipiroska","18","Vodka, fresh lime and sugar."],
+   ["Mango caipirinha","18","Rum, fresh lime, sugar and mango."],
+   ["Espresso martini","20",""],
+   ["Bloody Mary","20",""],
+   ["Long Island iced tea","28",""],
+   ["Negroni","20",""],
+   ["Whisky sour","20",""],
+   ["Amaretto sour","18",""],
+   ["Champagne cocktails","18",""],
+   ["Aperol spritz","18",""],
+   ["Cosmopolitan","20",""],
+   ["Blue passion","18",""],
+   ["Mojito","20",""],
+   ["Piña colada","18",""],
+   ["Old fashioned","18",""]]},
   {cat:"Mocktails",items:[
-   ["Peach iced tea","12","Peach, lemon and soda."],["Naked mojito","14","0% rum, mint, lime, sugar and ginger ale."],
-   ["Pink & sour spritz","12","0% aperitivo, fresh strawberry and blood orange."],["Summer cup","14","Strawberry, blueberry, lemon, mint and lemonade."],
-   ["Virgin lychee colada","14","Lychee, pineapple and coconut cream."],["Lychee like it","14","Cranberry, lychee and apple."],
+   ["Peach iced tea","12","Peach, lemon and soda."],
+   ["Naked mojito","14","0% rum, mint, lime, sugar and ginger ale."],
+   ["Pink & sour spritz","12","0% aperitivo, fresh strawberry and blood orange."],
+   ["Summer cup","14","Strawberry, blueberry, lemon, mint and lemonade."],
+   ["Virgin lychee colada","14","Lychee, pineapple and coconut cream."],
+   ["Lychee like it","14","Cranberry, lychee and apple."],
    ["Baby's Negroni","12","0% gin, 0% aperitivo and 0% spiced rum."]]},
   {cat:"Beer & cider",items:[
-   ["Kingfisher on tap","12",""],["Corona","10",""],["Byron Bay","10",""],["Pure Blonde","10","Ultra low carb."],
-   ["Great Northern","9","Zero alcohol."],["Hillbilly crushed apple cider","12",""]]},
+   ["Kingfisher on tap","12",""],
+   ["Corona","10",""],
+   ["Byron Bay","10",""],
+   ["Pure Blonde","10","Ultra low carb."],
+   ["Great Northern","9","Zero alcohol."],
+   ["Hillbilly crushed apple cider","12",""]]},
   {cat:"Wine",items:[
-   ["Trentham Estate Prosecco","14","Murray Darling, 200ml."],["Chain of Ponds Chardonnay Pinot Noir","60","Adelaide Hills, SA."],
-   ["Pommery Brut Royal","120","Champagne, France."],["Louis Roederer Collection 242","140","Champagne, France."],
-   ["Trentham Estate Pinot Gris","11 / 45","Murray Darling."],["Charlotte's Paradise Sauvignon Blanc","13 / 55","Marlborough, NZ."],
-   ["Kilikanoon Killerman's Run Riesling","14 / 60","Clare Valley, SA."],["Allandale Chardonnay","15 / 65","Hunter Valley, NSW."],
-   ["Jules Taylor Grüner Veltliner","60","Marlborough, NZ."],["See Saw 'Gee Gee' skin contact","75","Pinot Gris and Gewürztraminer, Orange NSW."],
-   ["See Saw Invergo Chardonnay","85","Orange, NSW."],["Angas & Bremer Cabernet Sauvignon","12 / 55","Langhorne Creek, SA."],
-   ["Coli Chianti","14 / 60","Sangiovese, Tuscany."],["First Drop 'Mother's Milk' Shiraz","14 / 60","Barossa Valley, SA."],
-   ["See Saw Pinot Noir","14 / 60","Orange, NSW."],["Cellier des Samsons Gamay","80","Beaujolais, France."],
-   ["XO Wine 'Cherry Pie'","70","Light red blend, Adelaide Hills."],["Rouleur Domestique Pinot Noir","85","Yarra Valley, VIC."],
-   ["Trentham Sangiovese rosé","11 / 45","Murray Darling."],["Torpez Petit Bravade rosé","75","Provence, France."]]}
+   ["Trentham Estate Prosecco","14","Murray Darling, 200ml."],
+   ["Chain of Ponds Chardonnay Pinot Noir","60","Adelaide Hills, SA."],
+   ["Pommery Brut Royal","120","Champagne, France."],
+   ["Louis Roederer Collection 242","140","Champagne, France."],
+   ["Trentham Estate Pinot Gris","11 / 45","Murray Darling."],
+   ["Charlotte's Paradise Sauvignon Blanc","13 / 55","Marlborough, NZ."],
+   ["Kilikanoon Killerman's Run Riesling","14 / 60","Clare Valley, SA."],
+   ["Allandale Chardonnay","15 / 65","Hunter Valley, NSW."],
+   ["Jules Taylor Grüner Veltliner","60","Marlborough, NZ."],
+   ["See Saw 'Gee Gee' skin contact","75","Pinot Gris and Gewürztraminer, Orange NSW."],
+   ["See Saw Invergo Chardonnay","85","Orange, NSW."],
+   ["Angas & Bremer Cabernet Sauvignon","12 / 55","Langhorne Creek, SA."],
+   ["Coli Chianti","14 / 60","Sangiovese, Tuscany."],
+   ["First Drop 'Mother's Milk' Shiraz","14 / 60","Barossa Valley, SA."],
+   ["See Saw Pinot Noir","14 / 60","Orange, NSW."],
+   ["Cellier des Samsons Gamay","80","Beaujolais, France."],
+   ["XO Wine 'Cherry Pie'","70","Light red blend, Adelaide Hills."],
+   ["Rouleur Domestique Pinot Noir","85","Yarra Valley, VIC."],
+   ["Trentham Sangiovese rosé","11 / 45","Murray Darling."],
+   ["Torpez Petit Bravade rosé","75","Provence, France."]]}
  ]
 };
 const PHOTOS = {
@@ -915,7 +1067,7 @@ const PHOTOS = {
   "Mocktails":"img/menu/virgin-lychee-colada-lg.webp","Beer & cider":"img/bar-kingfisher.webp","Wine":"img/bar-wide.webp"
 };
 
-const DISH_PHOTOS = {"Onion & spinach bhaji (4 pc)": "onion-spinach-bhaji-4-pc", "Amritsari tikki chaat": "amritsari-tikki-chaat", "Pani puri (gol gappa)": "pani-puri-gol-gappa", "Pani puri (5 pc)": "pani-puri-5-pc", "Chaat papdi": "chaat-papdi", "Papdi chaat": "papdi-chaat", "Chicken pakora": "chicken-pakora", "Fish Amritsari (4 pc)": "fish-amritsari-4-pc", "Paneer tikka (4 pc)": "paneer-tikka-4-pc", "Chooza tikka (4 pc)": "chooza-tikka-4-pc", "Tandoori chicken": "tandoori-chicken", "Hariyali mint chop (3 pc)": "hariyali-mint-chop-3-pc", "Seekh kebab (4 pc)": "seekh-kebab-4-pc", "Tandoori mixed platter": "tandoori-mixed-platter", "Classic masala dosa": "classic-masala-dosa", "Mysore masala dosa": "mysore-masala-dosa", "Butter chicken (murg makhani)": "butter-chicken-murg-makhani", "Prawn Malabar": "prawn-malabar", "Punjabi chole": "punjabi-chole", "Chickpea masala": "chickpea-masala", "Maharaja banquet": "maharaja-banquet", "Garlic naan": "garlic-naan", "Saffron rice": "saffron-rice", "Rasmalai": "rasmalai", "Kulfi": "kulfi", "Gulab jamun": "gulab-jamun", "Bombay Bloomers thali": "bombay-bloomers-thali", "Curry in a hurry with rice": "curry-in-a-hurry-with-rice", "The Spot Special": "the-spot-special", "Bombay Bloomers Margarita": "bombay-bloomers-margarita", "Baboon Bum": "baboon-bum", "Bombay Motai": "bombay-motai", "Girls Dream": "girls-dream", "Peach Piña Colada": "peach-pi-a-colada", "Forever & Always": "forever-always", "Matrimoni Martini": "matrimoni-martini", "Tommy's Martini": "tommy-s-martini", "Martini": "martini", "Summer apple": "summer-apple", "Amaretto sour": "amaretto-sour", "Negroni": "negroni", "Old fashioned": "old-fashioned", "Pink & sour spritz": "pink-sour-spritz", "Virgin lychee colada": "virgin-lychee-colada", "Lychee like it": "lychee-like-it", "Kingfisher on tap": "kingfisher-on-tap", "Biryani": "biryani", "Aperol spritz": "aperol-spritz", "Mixed pickle": "mixed-pickle", "Katchumber": "katchumber", "Cucumber raita": "cucumber-raita", "Papadums (4)": "papadums-4", "Veg mix platter": "veg-mix-platter", "Samosa (2 pc)": "samosa-2-pc", "Plain dosa": "plain-dosa", "Murg malai kabab (4 pc)": "murg-malai-kabab", "Tandoori garlic prawns (5 pc)": "tandoori-garlic-prawns", "Tikka masala": "tikka-masala", "Hot chilli chicken": "hot-chilli-chicken", "Saag": "saag", "Jhalfrezi": "jhalfrezi", "Lamb rogan josh": "lamb-rogan-josh", "Madras beef": "madras-beef", "Fish moulli curry": "fish-moulli-curry", "Malai kofta": "malai-kofta", "Aloo baingan": "aloo-baingan", "Dal": "dal", "Punjabi gobi aloo": "punjabi-gobi-aloo", "Roti": "roti", "Basmati rice": "basmati-rice", "Mango chutney": "mango-chutney", "Sliced cucumber, onion & tomato": "sliced-cucumber-onion-tomato", "Chicken tikka wrap": "chicken-tikka-wrap", "Piña colada": "pina-colada"};
+const DISH_PHOTOS = {"Onion & spinach bhaji (4 pc)": "onion-spinach-bhaji-4-pc", "Amritsari tikki chaat": "amritsari-tikki-chaat", "Pani puri (gol gappa)": "pani-puri-gol-gappa", "Pani puri (5 pc)": "pani-puri-5-pc", "Chaat papdi": "chaat-papdi", "Papdi chaat": "papdi-chaat", "Chicken pakora": "chicken-pakora", "Fish Amritsari (4 pc)": "fish-amritsari-4-pc", "Paneer tikka (4 pc)": "paneer-tikka-4-pc", "Chooza tikka (4 pc)": "chooza-tikka-4-pc", "Tandoori chicken": "tandoori-chicken", "Hariyali mint chop (3 pc)": "hariyali-mint-chop-3-pc", "Seekh kebab (4 pc)": "seekh-kebab-4-pc", "Tandoori mixed platter": "tandoori-mixed-platter", "Classic masala dosa": "classic-masala-dosa", "Mysore masala dosa": "mysore-masala-dosa", "Butter chicken (murg makhani)": "butter-chicken-murg-makhani", "Prawn Malabar": "prawn-malabar", "Punjabi chole": "punjabi-chole", "Chickpea masala": "chickpea-masala", "Maharaja banquet": "maharaja-banquet", "Garlic naan": "garlic-naan", "Saffron rice": "saffron-rice", "Rasmalai": "rasmalai", "Kulfi": "kulfi", "Gulab jamun": "gulab-jamun", "Bombay Bloomers thali": "bombay-bloomers-thali", "Curry in a hurry with rice": "curry-in-a-hurry-with-rice", "The Spot Special": "the-spot-special", "Bombay Bloomers Margarita": "bombay-bloomers-margarita", "Baboon Bum": "baboon-bum", "Bombay Motai": "bombay-motai", "Girls Dream": "girls-dream", "Peach Piña Colada": "peach-pi-a-colada", "Forever & Always": "forever-always", "Matrimoni Martini": "matrimoni-martini", "Tommy's Martini": "tommy-s-martini", "Martini": "martini", "Summer apple": "summer-apple", "Amaretto sour": "amaretto-sour", "Negroni": "negroni", "Old fashioned": "old-fashioned", "Pink & sour spritz": "pink-sour-spritz", "Virgin lychee colada": "virgin-lychee-colada", "Lychee like it": "lychee-like-it", "Kingfisher on tap": "kingfisher-on-tap", "Biryani": "biryani", "Aperol spritz": "aperol-spritz", "Mixed pickle": "mixed-pickle", "Katchumber": "katchumber", "Cucumber raita": "cucumber-raita", "Papadums (4)": "papadums-4", "Veg mix platter": "veg-mix-platter", "Samosa (2 pc)": "samosa-2-pc", "Plain dosa": "plain-dosa", "Murg malai kabab (4 pc)": "murg-malai-kabab", "Tandoori garlic prawns (5 pc)": "tandoori-garlic-prawns", "Tikka masala": "tikka-masala", "Hot chilli chicken": "hot-chilli-chicken", "Saag": "saag", "Jhalfrezi": "jhalfrezi", "Lamb rogan josh": "lamb-rogan-josh", "Madras beef / chicken": "madras-beef", "Fish moulli curry": "fish-moulli-curry", "Malai kofta": "malai-kofta", "Aloo baingan": "aloo-baingan", "Dal": "dal", "Punjabi gobi aloo": "punjabi-gobi-aloo", "Roti": "roti", "Basmati rice": "basmati-rice", "Mango chutney": "mango-chutney", "Sliced cucumber, onion & tomato": "sliced-cucumber-onion-tomato", "Chicken tikka wrap": "chicken-tikka-wrap", "Piña colada": "pina-colada"};
 const thumb = it => {
   const sl = DISH_PHOTOS[it[0]];
   if(!sl) return `<span class="dish__ph dish__ph--none" aria-hidden="true"><img src="img/monkey.png" alt=""></span>`;
@@ -980,6 +1132,7 @@ listEl.addEventListener('click',e=>{
   if(nb) nb.focus({preventScroll:true});
 });
 renderCats(); renderList();
+$$('[data-banquet]').forEach(a=>a.addEventListener('click',()=>{ const t=$('.seg button[data-menu="dinner"]'); if(t) t.click(); curCat='Maharaja banquet'; renderCats(); renderList(); }));
 $('#dishCount').dataset.count = MENU.dinner.reduce((n,g)=>n+g.items.length,0);
 $('#dishCount').textContent = $('#dishCount').dataset.count;
 
@@ -1013,11 +1166,11 @@ $('#dishCount').textContent = $('#dishCount').dataset.count;
 /* ---------- SIGNATURES ---------- */
 const SIG=[
   ["Prawn Malabar","29","Curry pots","King prawns, fresh curry leaves and mustard seeds in a mild coconut cream sauce.","img/prawn-malabar.webp"],
-  ["Hariyali mint chop","27","Tandoor","Lamb cutlets in mint and coriander, charred in the tandoor.","img/mint-chop.webp"],
-  ["Murg malai kabab","20","Tandoor","Cheese-stuffed chicken breast in yoghurt, mild and smoky.","img/tikka-martini.webp"],
+  ["Hariyali mint chop","28","Tandoor","Lamb cutlets in mint and coriander, charred in the tandoor.","img/mint-chop.webp"],
+  ["Chooza tikka","22","Tandoor","Tender boneless chicken in yoghurt and spices, grilled in the tandoor.","img/tikka-martini.webp"],
   ["Mysore masala dosa","16","South India","A crisp rice crêpe with spicy red chutney and spiced potato.","img/dosa-cocktail.webp"],
   ["Tandoori mixed platter","24 pp","To share","Chooza tikka, malai kabab, mint chop and seekh kebab.","img/feast-marble.webp"],
-  ["Butter chicken","29","The classic","Tandoori chicken tikka in tomato and cream. The one everyone orders.","img/table-for-two.webp"]
+  ["Butter chicken","29.50","The classic","Tandoori chicken tikka in tomato and cream. The one everyone orders.","img/table-for-two.webp"]
 ];
 $('#sigGrid').innerHTML=SIG.map(s=>`<a class="card" href="#menu"><div class="card__img"><img src="${s[4]}" alt="${esc(s[0])}" loading="lazy"></div><span class="card__price">$${esc(s[1])}</span><div class="card__body"><span class="card__tag">${esc(s[2])}</span><h3>${esc(s[0])}</h3><p>${esc(s[3])}</p></div></a>`).join('');
 if(!reduce && matchMedia('(hover:hover)').matches){
@@ -1036,7 +1189,7 @@ $('#mq').innerHTML=run+run;
 const RING=[
   ["Prawn Malabar","King prawns, curry leaves and mustard seeds in a mild coconut sauce.","img/prawn-malabar.webp"],
   ["The full spread","Curries, tandoor, naan, rice and pickles for the whole table.","img/feast-spread.webp"],
-  ["Murg malai kabab","Cheese-stuffed chicken from the tandoor, with a cocktail on the side.","img/tikka-martini.webp"],
+  ["Chooza tikka","Boneless chicken tikka from the tandoor, with a cocktail on the side.","img/tikka-martini.webp"],
   ["Hariyali mint chop","Lamb cutlets in mint and coriander, charred over the coals.","img/mint-chop.webp"],
   ["Mysore masala dosa","Crisp rice crêpe with spicy red chutney and a margarita.","img/dosa-cocktail.webp"],
   ["Seekh kebab and friends","Chicken and lamb skewers, saffron rice and papadums.","img/feast-marble.webp"],
